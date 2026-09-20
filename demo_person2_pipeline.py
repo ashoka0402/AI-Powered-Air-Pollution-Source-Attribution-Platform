@@ -26,12 +26,30 @@ from src.common.pipeline_progress import PipelineProgress
 from src.event_detection.baseline import build_pollution_baseline
 from src.event_detection.event_detector import detect_pollution_event
 from src.source_attribution.pipeline import generate_attribution_result
+from src.source_attribution.attribution_model import AttributionModel
 from src.forecasting.pollution_forecaster import PollutionForecaster
 
 
 def load_json(name: str):
     with open(ROOT / "data" / "sample" / name) as f:
         return json.load(f)
+
+
+def load_attribution_model():
+    """Load the trained model artifact if available; otherwise use cold-start prior."""
+    model_path = ROOT / "ml" / "artifacts" / "attribution_model.joblib"
+    if not model_path.exists():
+        print(f"[WARN] Trained attribution model not found: {model_path}")
+        print("       Continuing with uniform prior.")
+        return None
+    try:
+        model = AttributionModel.load(model_path)
+        print(f"[INFO] Loaded attribution model: {model_path}")
+        return model
+    except Exception as exc:
+        print(f"[WARN] Could not load attribution model: {exc}")
+        print("       Continuing with uniform prior.")
+        return None
 
 
 def main():
@@ -87,6 +105,7 @@ def main():
         )
         for s in srcs
     ]
+    model = load_attribution_model()
     progress.done("ingest", f"{len(records)} records · {len(sources)} sources")
 
     # ── 2. Baseline ────────────────────────────────────────────
@@ -117,11 +136,14 @@ def main():
 
         progress.step("features", "Engineering feature vector…")
         time.sleep(0.15)
-        progress.done("features", "22 features")
+        progress.done("features", "feature vector built")
 
         progress.step("ml", "Source probabilities…")
         time.sleep(0.15)
-        progress.done("ml", "uniform prior (no trained model)")
+        progress.done(
+            "ml",
+            "trained model loaded" if model is not None else "uniform prior (no trained model)",
+        )
 
         progress.step("fusion", "Fusing ML + wind + signature…")
         time.sleep(0.2)
@@ -130,7 +152,7 @@ def main():
             pollution=pollution,
             sources=sources,
             context=context,
-            model=None,
+            model=model,
         )
         progress.done("fusion", "5 evidence channels")
 
