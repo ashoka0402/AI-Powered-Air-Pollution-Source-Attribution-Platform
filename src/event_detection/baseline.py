@@ -12,7 +12,7 @@ Class:
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
@@ -87,7 +87,10 @@ def build_pollution_baseline(
         key = (rec.grid_id, hour)
         buckets.setdefault(key, []).append(float(value))
 
-    baseline = PollutionBaseline(lookback_hours=lookback_hours, built_at=datetime.utcnow())
+    baseline = PollutionBaseline(
+        lookback_hours=lookback_hours,
+        built_at=datetime.now(timezone.utc),
+    )
 
     for (grid_id, hour), values in buckets.items():
         if len(values) < 3:
