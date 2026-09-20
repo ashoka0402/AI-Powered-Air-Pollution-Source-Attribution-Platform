@@ -1,0 +1,55 @@
+# Person 2 – model configuration
+
+attribution:
+  model_type: gbm          # rf | gbm
+  model_version: attribution_v1
+  artifact_path: ml/artifacts/attribution_model.joblib
+  calibrate_probabilities: true
+  feature_columns:
+    - pm25
+    - pm10
+    - no2
+    - so2
+    - co
+    - pm25_excess
+    - pm10_excess
+    - wind_speed
+    - traffic_index
+    - construction_activity
+    - industrial_activity
+    - fire_count_5km
+    - nearest_candidate_score
+    - nearest_upwind_score
+    - nearest_distance_km
+    - sig_traffic
+    - sig_road_dust
+    - sig_construction
+    - sig_industrial
+    - sig_waste_burning
+    - sig_biomass_burning
+
+event_detection:
+  pollutant: pm25
+  zscore_threshold: 2.0
+  min_duration_minutes: 30
+  merge_window_minutes: 60
+  baseline_lookback_hours: 168
+  time_of_day_window_hours: 2
+
+evidence_fusion:
+  weights:
+    ml: 0.40
+    wind: 0.20
+    distance: 0.15
+    signature: 0.15
+    activity: 0.10
+
+forecasting:
+  model_version: forecaster_v1
+  default_horizon_hours: 24
+  lag: 6
+  residual_std_fallback: 15.0
+
+candidate_sources:
+  max_distance_km: 15.0
+  upwind_angle_tolerance_deg: 45.0

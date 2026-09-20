@@ -1,0 +1,24 @@
+# Thresholds used by event detection and confidence scoring
+
+anomaly:
+  zscore_low: 2.0
+  zscore_moderate: 3.0
+  zscore_high: 4.5
+
+severity:
+  low: low
+  moderate: moderate
+  high: high
+  critical: critical
+
+confidence:
+  min: 0.15
+  max: 0.98
+
+pollutant_units:
+  pm25: "µg/m³"
+  pm10: "µg/m³"
+  no2: "µg/m³"
+  so2: "µg/m³"
+  co: "mg/m³"
+  o3: "µg/m³"

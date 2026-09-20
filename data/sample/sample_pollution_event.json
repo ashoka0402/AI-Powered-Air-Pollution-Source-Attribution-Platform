@@ -1,0 +1,13 @@
+{
+  "event_id": "EVT-G042-202608231000",
+  "grid_id": "G042",
+  "start_time": "2026-08-23T10:00:00+05:30",
+  "end_time": "2026-08-23T14:00:00+05:30",
+  "pollutant": "pm25",
+  "observed_value": 168.4,
+  "baseline_value": 72.1,
+  "severity": "high",
+  "status": "resolved",
+  "latitude": 28.6139,
+  "longitude": 77.209
+}

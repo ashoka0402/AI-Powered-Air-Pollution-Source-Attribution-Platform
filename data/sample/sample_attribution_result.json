@@ -1,0 +1,41 @@
+{
+  "event_id": "EVT-G042-202608231000",
+  "grid_id": "G042",
+  "timestamp": "2026-08-23T10:00:00+05:30",
+  "primary_source_type": "construction",
+  "confidence": 0.84,
+  "model_version": "attribution_v1",
+  "sources": [
+    {
+      "source_type": "construction",
+      "probability": 0.61,
+      "contribution": 0.48
+    },
+    {
+      "source_type": "road_dust",
+      "probability": 0.18,
+      "contribution": 0.12
+    },
+    {
+      "source_type": "traffic",
+      "probability": 0.11,
+      "contribution": 0.08
+    },
+    {
+      "source_type": "background",
+      "probability": 0.07,
+      "contribution": 0.05
+    },
+    {
+      "source_type": "unknown",
+      "probability": 0.03,
+      "contribution": 0.02
+    }
+  ],
+  "evidence": [
+    "upwind construction source (0.8 km)",
+    "active construction activity nearby",
+    "PM10 spike",
+    "dry conditions"
+  ]
+}

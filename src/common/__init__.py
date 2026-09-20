@@ -1,0 +1,1 @@
+# Shared common package (schemas, enums, constants used by Person 2)

@@ -1,0 +1,42 @@
+[
+  {
+    "source_id": "C001",
+    "source_type": "construction",
+    "latitude": 28.618,
+    "longitude": 77.215,
+    "active_flag": true,
+    "name": "Metro Phase-4 site"
+  },
+  {
+    "source_id": "C002",
+    "source_type": "construction",
+    "latitude": 28.61,
+    "longitude": 77.2,
+    "active_flag": true,
+    "name": "Road widening"
+  },
+  {
+    "source_id": "T001",
+    "source_type": "traffic",
+    "latitude": 28.614,
+    "longitude": 77.21,
+    "active_flag": true,
+    "name": "Ring Road corridor"
+  },
+  {
+    "source_id": "I001",
+    "source_type": "industrial",
+    "latitude": 28.63,
+    "longitude": 77.23,
+    "active_flag": true,
+    "name": "Industrial cluster"
+  },
+  {
+    "source_id": "B001",
+    "source_type": "waste_burning",
+    "latitude": 28.605,
+    "longitude": 77.195,
+    "active_flag": false,
+    "name": "Dumping ground"
+  }
+]
