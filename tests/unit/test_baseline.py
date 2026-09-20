@@ -11,7 +11,7 @@ from src.event_detection.baseline import (
 )
 
 
-def _make_records(n=48, base_pm25=60.0):
+def _make_records(n=72, base_pm25=60.0):
     start = datetime(2026, 8, 1, 0, 0)
     recs = []
     for i in range(n):
